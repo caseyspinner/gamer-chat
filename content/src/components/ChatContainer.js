@@ -3,6 +3,7 @@ import ChatFeed from "./ChatFeed";
 import UserList from "./UserList";
 import ChatMessageBox from "./ChatMessageBox";
 import botObject from "../constants/bot.defaults";
+import botMap from "../constants/bot.nameMap";
 const moment = require("moment");
 
 class ChatContainer extends React.Component {
@@ -15,12 +16,48 @@ class ChatContainer extends React.Component {
    }
 
    handleBotMessage = msg => {
-      if (msg.search(/lebron/i) !== -1) {
-         setTimeout(
-            () => this.addMessage(botObject.lebron.name, botObject.lebron.greeting),
-            2000
-         );
+      for (var [key, value] of botMap.entries()) {
+         if (msg.search(key) !== -1) {
+            setTimeout(() => this.addMessage([value].name, [value].greeting), 2000);
+            break;
+         }
       }
+      //   if (msg.search(/lebron/i) !== -1) {
+      //      setTimeout(
+      //         () => this.addMessage(botObject.lebron.name, botObject.lebron.greeting),
+      //         2000
+      //      );
+      //   }
+      //   if (msg.search(/han solo/i) !== -1) {
+      //      setTimeout(
+      //         () => this.addMessage(botObject.hanSolo.name, botObject.hanSolo.greeting),
+      //         2000
+      //      );
+      //   }
+      //   if (msg.search(/yoda/i) !== -1) {
+      //      setTimeout(
+      //         () => this.addMessage(botObject.yoda.name, botObject.yoda.greeting),
+      //         2000
+      //      );
+      //   }
+      //   if (msg.search(/recker/i) !== -1) {
+      //      setTimeout(
+      //         () => this.addMessage(botObject.recker.name, botObject.recker.greeting),
+      //         2000
+      //      );
+      //   }
+      //   if (msg.search(/miranda/i) !== -1) {
+      //      setTimeout(
+      //         () => this.addMessage(botObject.miranda.name, botObject.miranda.greeting),
+      //         2000
+      //      );
+      //   }
+      //   if (msg.search(/conor/i) !== -1) {
+      //      setTimeout(
+      //         () => this.addMessage(botObject.conor.name, botObject.conor.greeting),
+      //         2000
+      //      );
+      //   }
    };
 
    addMessage = (user, text) => {
