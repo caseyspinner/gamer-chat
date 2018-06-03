@@ -1,17 +1,11 @@
 import React from "react";
 
-class ChatMessageBox extends React.Component {
-   constructor(props) {
-      super(props);
-
-      this.submitMessage = this.submitMessage.bind(this);
-   }
-
-   submitMessage(e) {
+export default class ChatMessageBox extends React.Component {
+   submitMessage = e => {
       e.preventDefault();
       this.props.addMessage(this.myMessage.value);
-      this.myMessage.value = '';
-   }
+      this.myMessage.value = "";
+   };
 
    render() {
       return (
@@ -26,4 +20,3 @@ class ChatMessageBox extends React.Component {
       );
    }
 }
-export default ChatMessageBox;

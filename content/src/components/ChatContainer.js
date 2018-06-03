@@ -2,6 +2,7 @@ import React from "react";
 import ChatFeed from "./ChatFeed";
 import UserList from "./UserList";
 import ChatMessageBox from "./ChatMessageBox";
+import botObject from "../constants/bot.defaults";
 const moment = require("moment");
 
 class ChatContainer extends React.Component {
@@ -15,7 +16,10 @@ class ChatContainer extends React.Component {
 
    handleBotMessage = msg => {
       if (msg.search(/lebron/i) !== -1) {
-         setTimeout(() => this.addMessage("Lebron", "Hey man."), 2000);
+         setTimeout(
+            () => this.addMessage(botObject.lebron.name, botObject.lebron.greeting),
+            2000
+         );
       }
    };
 

@@ -1,5 +1,6 @@
 import React from "react";
 import UserCard from "./UserCard";
+import botObject from "../constants/bot.defaults";
 const conorPhoto = require("../images/conor.jpg");
 const reckerPhoto = require("../images/Battlefield_4_Icon.png");
 const hanSoloPhoto = require("../images/Han-Solo-02-icon.png");
