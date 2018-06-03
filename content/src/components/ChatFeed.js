@@ -24,9 +24,9 @@ class ChatFeed extends React.Component {
 
    render() {
       const messages = this.state.messages.map(message => {
-         return (
-            <li>
-               {message.text}{" "}
+          return (
+            <li className="message-item">
+               {message.user && `${message.user} :`} {message.text}{" "}
                <span className="pull-right">{message.timeStamp}</span>
             </li>
          );
@@ -34,7 +34,7 @@ class ChatFeed extends React.Component {
 
       return (
          <div className="chat-feed">
-            <ul>{messages.length > 0 ? messages : null}</ul>
+            <ul className="message-list">{messages.length > 0 ? messages : null}</ul>
          </div>
       );
    }
