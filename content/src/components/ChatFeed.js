@@ -15,18 +15,21 @@ class ChatFeed extends React.Component {
       }));
    }
 
-   componentWillReceiveProps(nextProps) {
+   static getDerivedStateFromProps(nextProps, prevState) {
       let message = nextProps.messageData;
-      nextProps.messageData !== this.props.messageData
-         ? this.setState(prevState => {
-              return { messages: [...prevState.messages, message] };
-           })
-         : null;
+      if (message !== prevState.messages) {
+         return { messages: [...prevState.messages, message] };
+      }
    }
 
    render() {
       const messages = this.state.messages.map(message => {
-         return <li>{message.text} <span className="pull-right">{message.timeStamp}</span></li>;
+         return (
+            <li>
+               {message.text}{" "}
+               <span className="pull-right">{message.timeStamp}</span>
+            </li>
+         );
       });
 
       return (
