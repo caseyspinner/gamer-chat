@@ -1,0 +1,96 @@
+.App {
+  text-align: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(58, 58, 58);
+}
+
+.user-card {
+  height: 16%;
+  width: 100%;
+  margin: 1em;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.right-side {
+  vertical-align: middle;
+  height: 50%;
+}
+
+.user-card img {
+  height: 100%;
+  width: 100%;
+}
+
+@media only screen and (max-width:768px) {
+  .chat-container {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+  }
+}
+
+@media only screen and (min-width:769px) {
+  .chat-container {
+    width: 90vw;
+    height: 90vh;
+  }
+}
+
+.user-list {
+  height: 85vh;
+  background-color: rgb(58, 58, 58);
+  box-shadow: 0 0 8px 0 rgba(0,0,0, 0.3);
+  padding:0.5em;
+  color: rgb(192, 192, 192);
+}
+
+.chat-feed {
+  background-color: rgb(192, 192, 192);
+  box-shadow: 0 0 8px 0 rgba(0,0,0, 0.3);
+  height: 60vh;
+  overflow-y:scroll;
+  padding: 1em;
+  text-align: left;
+}
+
+ul, li {
+  list-style-type: none;
+  list-style-position: inside;
+  margin: 0;
+  padding:0;
+}
+
+.chat-container {
+  padding: 1.2em;
+  background-color: rgb(84, 92, 100);
+  vertical-align: middle;
+  box-shadow: 0 0 8px 0 rgba(0,0,0, 0.3);
+
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
