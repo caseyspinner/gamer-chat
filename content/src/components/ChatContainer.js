@@ -18,10 +18,8 @@ class ChatContainer extends React.Component {
    handleBotMessage = msg => {
       botMap.forEach((value, key, botMap) => {
          if (msg.search(key) !== -1) {
-            setTimeout(
-               () => this.addMessage(botMap.get(key).name, botMap.get(key).greeting),
-               2000
-            );
+            let thisBot = botMap.get(key);
+            setTimeout(() => this.addMessage(thisBot.name, thisBot.greeting), 2000);
          }
       });
    };

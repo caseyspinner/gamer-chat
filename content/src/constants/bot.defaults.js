@@ -38,7 +38,7 @@ const botObject = {
       status: "Away",
       favoriteGame: "NBA Live 18",
       icon: lebronPhoto,
-      greeting: "What's up?",
+      greeting: "Hey man.",
       affirmativeResponse: "Sounds good, see you out there!",
       negativeResponse: "Sorry, man, not my kind of game."
    },

@@ -17,57 +17,32 @@ class UserList extends React.Component {
             {
                name: "Han Solo",
                status: "Online",
-               favoriteGame: "Star Wars Battlefront II",
-               icon: hanSoloPhoto,
-               greeting: "Yooooo!",
-               affirmativeResponse: "Down! I'll hop online now.",
-               negativeResponse: "Nah, I'll pass."
+               icon: hanSoloPhoto
             },
             {
                name: "Yoda",
                status: "Away",
-               favoriteGame: "Star Wars Battlefront II",
-               icon: yodaPhoto,
-               greeting: "Greetings.",
-               affirmativeResponse: "Play with you, I will.",
-               negativeResponse: "Interested, I am not."
+               icon: yodaPhoto
             },
             {
                name: "Recker",
                status: "Online",
-               favoriteGame: "Battlefield 4",
-               icon: reckerPhoto,
-               greeting: "Hey.",
-               affirmativeResponse: "Let's do it. Join my squad.",
-               negativeResponse: "That's a negative."
+               icon: reckerPhoto
             },
             {
                name: "Lebron",
                status: "Away",
-               favoriteGame: "NBA Live 18",
-               icon: lebronPhoto,
-               greeting: "What's up?",
-               affirmativeResponse: "Sounds good, see you out there!",
-               negativeResponse: "Sorry, man, not my kind of game."
+               icon: lebronPhoto
             },
             {
                name: "Miranda",
                status: "Online",
-               favoriteGame: "Mass Effect 3",
-               icon: mirandaPhoto,
-               greeting: "Hello.",
-               affirmativeResponse: "I could go for some Mass Effect.",
-               negativeResponse: "Thanks, but no thanks."
+               icon: mirandaPhoto
             },
             {
                name: "Conor",
                status: "Away",
-               favoriteGame: "UFC 3",
-               icon: conorPhoto,
-               greeting: "Ayyyy",
-               affirmativeResponse:
-                  "It's your funeral, lad. See you in the octagon.",
-               negativeResponse: "Sorry, busy training."
+               icon: conorPhoto
             }
          ]
       };
