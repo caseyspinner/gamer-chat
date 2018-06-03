@@ -28,7 +28,7 @@ class ChatContainer extends React.Component {
                <div className="row-responsive">
                   <ChatFeed
                      messageData={
-                        this.state.messageData ? this.state.messageData : null
+                        this.state.messageData || null
                      }
                   />
                </div>
