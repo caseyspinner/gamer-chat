@@ -9,41 +9,33 @@ class ChatContainer extends React.Component {
       super(props);
 
       this.state = {
-         messageData: {}
+         message: {}
       };
-      this.handleBotMessage = this.handleBotMessage.bind(this);
-      this.addOwnMessage = this.addOwnMessage.bind(this);
-      this.addBotMessage = this.addBotMessage.bind(this);
    }
 
    handleBotMessage = msg => {
       if (msg.search(/lebron/i) !== -1) {
-         setTimeout(() => this.addBotMessage("Lebron", "Hey man."), 2000);
+         setTimeout(() => this.addMessage("Lebron", "Hey man."), 2000);
       }
    };
 
-   addOwnMessage(msg) {
-      let message = {};
-      message.text = msg;
-      message.user = "You";
-      message.timeStamp = moment().format("h:mm:ss a");
-      this.setState({ messageData: message }, () => this.handleBotMessage(msg));
-   }
+   addMessage = (user, text) => {
+      this.setState(
+         {
+            message: { text, user, timeStamp: moment().format("h:mm:ss a") }
+         },
+         this.handleBotMessage.bind(null, text)
+      );
+   };
 
-   addBotMessage(user, msg) {
-      let message = {};
-      message.text = msg;
-      message.user = user;
-      message.timeStamp = moment().format("h:mm:ss a");
-      this.setState({ messageData: message });
-   }
+   addOwnMessage = text => this.addMessage("You", text);
 
    render() {
       return (
          <div className="container-fluid d-flex chat-container align-self-center">
             <div className="col-md-8 col-xl-8 col-lg-8 col-sm-10 col-xs-10">
                <div className="row-responsive">
-                  <ChatFeed messageData={this.state.messageData || null} />
+                  <ChatFeed messageData={this.state.message || null} />
                </div>
                <div className="row-responsive">
                   <ChatMessageBox addMessage={this.addOwnMessage} />
