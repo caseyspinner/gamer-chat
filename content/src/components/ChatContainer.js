@@ -16,48 +16,14 @@ class ChatContainer extends React.Component {
    }
 
    handleBotMessage = msg => {
-      for (var [key, value] of botMap.entries()) {
+      botMap.forEach((value, key, botMap) => {
          if (msg.search(key) !== -1) {
-            setTimeout(() => this.addMessage([value].name, [value].greeting), 2000);
-            break;
+            setTimeout(
+               () => this.addMessage(botMap.get(key).name, botMap.get(key).greeting),
+               2000
+            );
          }
-      }
-      //   if (msg.search(/lebron/i) !== -1) {
-      //      setTimeout(
-      //         () => this.addMessage(botObject.lebron.name, botObject.lebron.greeting),
-      //         2000
-      //      );
-      //   }
-      //   if (msg.search(/han solo/i) !== -1) {
-      //      setTimeout(
-      //         () => this.addMessage(botObject.hanSolo.name, botObject.hanSolo.greeting),
-      //         2000
-      //      );
-      //   }
-      //   if (msg.search(/yoda/i) !== -1) {
-      //      setTimeout(
-      //         () => this.addMessage(botObject.yoda.name, botObject.yoda.greeting),
-      //         2000
-      //      );
-      //   }
-      //   if (msg.search(/recker/i) !== -1) {
-      //      setTimeout(
-      //         () => this.addMessage(botObject.recker.name, botObject.recker.greeting),
-      //         2000
-      //      );
-      //   }
-      //   if (msg.search(/miranda/i) !== -1) {
-      //      setTimeout(
-      //         () => this.addMessage(botObject.miranda.name, botObject.miranda.greeting),
-      //         2000
-      //      );
-      //   }
-      //   if (msg.search(/conor/i) !== -1) {
-      //      setTimeout(
-      //         () => this.addMessage(botObject.conor.name, botObject.conor.greeting),
-      //         2000
-      //      );
-      //   }
+      });
    };
 
    addMessage = (user, text) => {
