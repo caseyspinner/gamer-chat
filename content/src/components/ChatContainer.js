@@ -20,6 +20,19 @@ class ChatContainer extends React.Component {
          if (msg.search(key) !== -1) {
             let thisBot = botMap.get(key);
             setTimeout(() => this.addMessage(thisBot.name, thisBot.greeting), 2000);
+            if (
+               msg.search(/favorite game/i) !== -1 ||
+               msg.search(/favourite game/i) !== -1
+            ) {
+               setTimeout(
+                  () =>
+                     this.addMessage(
+                        thisBot.name,
+                        `My favorite game is ${thisBot.favoriteGame}`
+                     ),
+                  3000
+               );
+            }
          }
       });
    };
