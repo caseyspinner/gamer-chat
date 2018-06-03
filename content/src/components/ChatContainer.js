@@ -11,14 +11,26 @@ class ChatContainer extends React.Component {
       this.state = {
          messageData: {}
       };
-      this.addMessage = this.addMessage.bind(this);
+      this.handleBotMessage = this.handleBotMessage.bind(this);
+      this.addOwnMessage = this.addOwnMessage.bind(this);
+      this.addBotMessage = this.addBotMessage.bind(this);
    }
 
-   handleAddMessage = msg => {
-      this.addMessage("You", msg);
+   handleBotMessage = msg => {
+      if (msg.search(/lebron/i) !== -1) {
+         setTimeout(() => this.addBotMessage("Lebron", "Hey man."), 2000);
+      }
    };
 
-   addMessage(user, msg) {
+   addOwnMessage(msg) {
+      let message = {};
+      message.text = msg;
+      message.user = "You";
+      message.timeStamp = moment().format("h:mm:ss a");
+      this.setState({ messageData: message }, () => this.handleBotMessage(msg));
+   }
+
+   addBotMessage(user, msg) {
       let message = {};
       message.text = msg;
       message.user = user;
@@ -34,7 +46,7 @@ class ChatContainer extends React.Component {
                   <ChatFeed messageData={this.state.messageData || null} />
                </div>
                <div className="row-responsive">
-                  <ChatMessageBox addMessage={this.handleAddMessage} />
+                  <ChatMessageBox addMessage={this.addOwnMessage} />
                </div>
             </div>
             <div className="col-md-4 col-xl-4 col-lg-4 col-sm-2 col-xs-2">
