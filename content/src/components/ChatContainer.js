@@ -29,7 +29,7 @@ class ChatContainer extends React.Component {
    }
 
    awayStatus = () => {
-      let randomBot = this.state.users[
+      const randomBot = this.state.users[
          Math.floor(Math.random() * this.state.users.length)
       ];
       if (randomBot.status === "Away") {
@@ -52,19 +52,28 @@ class ChatContainer extends React.Component {
          if (msg.search(key) == -1) {
             return;
          }
-         let thisBot = botMap.get(key);
-         if (thisBot.status !== `Playing ${thisBot.favoriteGame}`) {
+         const thisBot = botMap.get(key);
+         const notPlaying = thisBot.status !== `Playing ${thisBot.favoriteGame}`;
+         const favoriteGameAsked = msg.search(/favou?rite game/i) !== -1;
+         const askedToPlayFavoriteGame =
+            msg.search(new RegExp(thisBot.favoriteGame, "i")) !== -1;
+         const askedToPlayOtherGame =
+            msg.search(/play/i) !== -1 &&
+            msg.search(new RegExp(thisBot.name, thisBot.favoriteGame, "i")) == -1;
+
+         if (notPlaying) {
             this.timedStatusUpdate(thisBot.name, "Online", 2000);
          }
-         if (msg.search(/favou?rite game/i) !== -1) {
-            this.timedBotResponse(`My favorite game is ${thisBot.favoriteGame}.`, 3000);
-         } else if (msg.search(new RegExp(thisBot.favoriteGame, "i")) !== -1) {
+         if (favoriteGameAsked) {
+            this.timedBotResponse(
+               thisBot.name,
+               `My favorite game is ${thisBot.favoriteGame}.`,
+               3000
+            );
+         } else if (askedToPlayFavoriteGame) {
             this.timedBotResponse(thisBot.name, thisBot.affirmativeResponse, 4000);
             this.timedStatusUpdate(`Playing ${thisBot.favoriteGame}`, 5000);
-         } else if (
-            msg.search(/play/i) !== -1 &&
-            msg.search(new RegExp(thisBot.name, thisBot.favoriteGame, "i")) == -1
-         ) {
+         } else if (askedToPlayOtherGame) {
             this.timedBotResponse(thisBot.name, thisBot.negativeResponse, 4000);
          } else {
             this.timedBotResponse(thisBot.name, thisBot.greeting, 2000);
