@@ -29,7 +29,7 @@ class ChatContainer extends React.Component {
    }
 
    awayStatus = () => {
-      let randomBot = this.state.users[
+      const randomBot = this.state.users[
          Math.floor(Math.random() * this.state.users.length)
       ];
       if (randomBot.status === "Away") {
@@ -39,35 +39,55 @@ class ChatContainer extends React.Component {
       }
    };
 
+   updateBotStatus = (botName, newStatus) => {
+      const users = this.state.users;
+      const userIndex = users.findIndex(user => {
+         return user.name === botName;
+      });
+      const updatedUser = update(users[userIndex], { status: { $set: newStatus } });
+      const updatedArray = update(users, {
+         $splice: [[userIndex, 1, updatedUser]]
+      });
+      this.setState({ users: updatedArray });
+   };
+
+   timedCall = (method, name, text, timeout) => {
+      setTimeout(method.bind(null, name, text), timeout);
+   };
+
+   statusUpdate = () => this.timedCall.bind(this, this.updateBotStatus);
+
+   botResponse = () => this.timedCall.bind(this, this.addMessage);
+
    handleBotMessage = msg => {
       botMap.forEach((value, key, botMap) => {
-         if (msg.search(key) == -1) {
+         if (msg.search(key) === -1) {
             return;
          }
-         let thisBot = botMap.get(key);
-         const response = (message, messageTimeout) => {
-            setTimeout(() => this.addMessage(thisBot.name, message), messageTimeout);
-         };
-         const statusUpdate = (status, statusTimeout) => {
-            setTimeout(() => this.updateBotStatus(thisBot.name, status), statusTimeout);
-         };
-         if (thisBot.status !== `Playing ${thisBot.favoriteGame}`) {
-            statusUpdate("Online", 2000);
-         }
-         if (msg.search(/favou?rite game/i) !== -1) {
-            response(`My favorite game is ${thisBot.favoriteGame}.`, 3000);
-         } else if (msg.search(new RegExp(thisBot.favoriteGame, "i")) !== -1) {
-            response(thisBot.affirmativeResponse, 4000);
-            statusUpdate(`Playing ${thisBot.favoriteGame}`, 5000);
-         } else if (
-            msg.search(/play/i) !== -1 &&
-            msg.search(new RegExp(thisBot.favoriteGame, "i")) == -1
-         ) {
-            response(thisBot.negativeResponse, 4000);
+
+         const thisBot = botMap.get(key);
+         const tellFavoriteGame = msg.search(/favou?rite game/i) !== -1;
+         const hasFavoriteGame = msg.search(new RegExp(thisBot.favoriteGame, "i")) !== -1;
+         const hasOtherGame = msg.search(/play/i) !== -1 && !hasFavoriteGame;
+
+         this.changeToOnlineStatus(thisBot);
+
+         if (tellFavoriteGame) {
+            this.botResponse(`My favorite game is ${thisBot.favoriteGame}.`, 3000);
+         } else if (hasFavoriteGame) {
+            this.botResponse(thisBot.name, thisBot.affirmativeResponse, 4000);
+            this.statusUpdate(thisBot.name, `Playing ${thisBot.favoriteGame}`, 5000);
+         } else if (hasOtherGame) {
+            this.botResponse(thisBot.name, thisBot.negativeResponse, 4000);
          } else {
-            response(thisBot.greeting, 2000);
+            this.botResponse(thisBot.name, thisBot.greeting, 2000);
          }
       });
+   };
+
+   changeToOnlineStatus = bot => {
+      bot.status !== `Playing ${bot.favoriteGame}` &&
+         this.statusUpdate(bot.name, "Online", 2000);
    };
 
    addMessage = (user, text) => {
@@ -80,18 +100,6 @@ class ChatContainer extends React.Component {
    };
 
    addOwnMessage = text => this.addMessage("You", text);
-
-   updateBotStatus = (botName, newStatus) => {
-      let users = this.state.users;
-      let userIndex = users.findIndex(user => {
-         return user.name === botName;
-      });
-      let updatedUser = update(users[userIndex], { status: { $set: newStatus } });
-      let updatedArray = update(users, {
-         $splice: [[userIndex, 1, updatedUser]]
-      });
-      this.setState({ users: updatedArray });
-   };
 
    render() {
       return (
