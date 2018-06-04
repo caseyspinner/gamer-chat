@@ -59,7 +59,7 @@ class ChatContainer extends React.Component {
             msg.search(new RegExp(thisBot.favoriteGame, "i")) !== -1;
          const askedToPlayOtherGame =
             msg.search(/play/i) !== -1 &&
-            msg.search(new RegExp(thisBot.name, thisBot.favoriteGame, "i")) == -1;
+            msg.search(new RegExp(thisBot.favoriteGame, "i")) == -1;
 
          if (notPlaying) {
             this.timedStatusUpdate(thisBot.name, "Online", 2000);
@@ -72,7 +72,7 @@ class ChatContainer extends React.Component {
             );
          } else if (askedToPlayFavoriteGame) {
             this.timedBotResponse(thisBot.name, thisBot.affirmativeResponse, 4000);
-            this.timedStatusUpdate(`Playing ${thisBot.favoriteGame}`, 5000);
+            this.timedStatusUpdate(thisBot.name, `Playing ${thisBot.favoriteGame}`, 5000);
          } else if (askedToPlayOtherGame) {
             this.timedBotResponse(thisBot.name, thisBot.negativeResponse, 4000);
          } else {
