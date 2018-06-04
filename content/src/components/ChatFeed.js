@@ -17,7 +17,8 @@ class ChatFeed extends React.Component {
 
    static getDerivedStateFromProps(nextProps, prevState) {
       let message = nextProps.messageData;
-      if (message !== prevState.messages) {
+      let currentMessages = prevState.messages;
+      if (message !== currentMessages[currentMessages.length - 1]) {
          return { messages: [...prevState.messages, message] };
       }
    }

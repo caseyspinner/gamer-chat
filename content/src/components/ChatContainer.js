@@ -5,13 +5,52 @@ import ChatMessageBox from "./ChatMessageBox";
 import botObject from "../constants/bot.defaults";
 import botMap from "../constants/bot.nameMap";
 const moment = require("moment");
+const conorPhoto = require("../images/conor.jpg");
+const reckerPhoto = require("../images/Battlefield_4_Icon.png");
+const hanSoloPhoto = require("../images/Han-Solo-02-icon.png");
+const lebronPhoto = require("../images/lebron.jpg");
+const mirandaPhoto = require("../images/miranda.jpg");
+const yodaPhoto = require("../images/yoda.jpeg");
+const update = require("immutability-helper");
 
 class ChatContainer extends React.Component {
    constructor(props) {
       super(props);
 
       this.state = {
-         message: {}
+         message: {},
+         users: [
+            {
+               name: "Han Solo",
+               status: "Online",
+               icon: hanSoloPhoto
+            },
+            {
+               name: "Yoda",
+               status: "Away",
+               icon: yodaPhoto
+            },
+            {
+               name: "Recker",
+               status: "Online",
+               icon: reckerPhoto
+            },
+            {
+               name: "Lebron",
+               status: "Away",
+               icon: lebronPhoto
+            },
+            {
+               name: "Miranda",
+               status: "Online",
+               icon: mirandaPhoto
+            },
+            {
+               name: "Conor",
+               status: "Away",
+               icon: conorPhoto
+            }
+         ]
       };
    }
 
@@ -19,9 +58,9 @@ class ChatContainer extends React.Component {
       botMap.forEach((value, key, botMap) => {
          if (msg.search(key) !== -1) {
             let thisBot = botMap.get(key);
-            // if (thisBot.status === "Away") {
-            //    () => this.updateBotStatus(thisBot.name, "Online");
-            // }
+            if (thisBot.status === "Away") {
+               setTimeout(() => this.updateBotStatus(thisBot.name, "Online"), 2000);
+            }
             if (
                msg.search(/favorite game/i) !== -1 ||
                msg.search(/favourite game/i) !== -1
@@ -39,7 +78,11 @@ class ChatContainer extends React.Component {
                   () => this.addMessage(thisBot.name, thisBot.affirmativeResponse),
                   4000
                );
-               // () => this.updateBotStatus(thisBot.name, `Playing {thisBot.favoriteGame}`);
+               setTimeout(
+                  () =>
+                     this.updateBotStatus(thisBot.name, `Playing ${thisBot.favoriteGame}`),
+                  5000
+               );
             } else if (
                msg.search(/play/i) !== -1 &&
                msg.search(new RegExp(thisBot.favoriteGame, "i")) == -1
@@ -67,7 +110,15 @@ class ChatContainer extends React.Component {
    addOwnMessage = text => this.addMessage("You", text);
 
    updateBotStatus = (botName, newStatus) => {
-      this.setState({ updateBot: { name: botName, status: newStatus } });
+      let users = this.state.users;
+      let userIndex = users.findIndex(user => {
+         return user.name === botName;
+      });
+      let updatedUser = update(users[userIndex], { status: { $set: newStatus } });
+      let updatedArray = update(users, {
+         $splice: [[userIndex, 1, updatedUser]]
+      });
+      this.setState({ users: updatedArray });
    };
 
    render() {
@@ -82,7 +133,7 @@ class ChatContainer extends React.Component {
                </div>
             </div>
             <div className="col-md-4 col-xl-4 col-lg-4 col-sm-2 col-xs-2">
-               <UserList updateBot={this.state.updateBot} />
+               <UserList users={this.state.users} />
             </div>
          </div>
       );
