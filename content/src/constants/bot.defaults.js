@@ -12,7 +12,7 @@ const botObject = {
       favoriteGame: "Star Wars Battlefront II",
       icon: hanSoloPhoto,
       greeting: "Yooooo!",
-      affirmativeResponse: "Down! I'll hop online now.",
+      affirmativeResponse: "Down! I'll hop online now. Yoda, you want to play Star Wars Battlefront II with us?",
       negativeResponse: "Nah, I'll pass."
    },
    yoda: {

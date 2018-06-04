@@ -4,13 +4,8 @@ import UserList from "./UserList";
 import ChatMessageBox from "./ChatMessageBox";
 import botObject from "../constants/bot.defaults";
 import botMap from "../constants/bot.nameMap";
+import botArray from "../constants/bot.array";
 const moment = require("moment");
-const conorPhoto = require("../images/conor.jpg");
-const reckerPhoto = require("../images/Battlefield_4_Icon.png");
-const hanSoloPhoto = require("../images/Han-Solo-02-icon.png");
-const lebronPhoto = require("../images/lebron.jpg");
-const mirandaPhoto = require("../images/miranda.jpg");
-const yodaPhoto = require("../images/yoda.jpeg");
 const update = require("immutability-helper");
 
 class ChatContainer extends React.Component {
@@ -19,46 +14,36 @@ class ChatContainer extends React.Component {
 
       this.state = {
          message: {},
-         users: [
-            {
-               name: "Han Solo",
-               status: "Online",
-               icon: hanSoloPhoto
-            },
-            {
-               name: "Yoda",
-               status: "Away",
-               icon: yodaPhoto
-            },
-            {
-               name: "Recker",
-               status: "Online",
-               icon: reckerPhoto
-            },
-            {
-               name: "Lebron",
-               status: "Away",
-               icon: lebronPhoto
-            },
-            {
-               name: "Miranda",
-               status: "Online",
-               icon: mirandaPhoto
-            },
-            {
-               name: "Conor",
-               status: "Away",
-               icon: conorPhoto
-            }
-         ]
+         users: []
       };
    }
+
+   componentDidMount() {
+      this.setState({ users: botArray }, () => {
+         this.awayInterval = setInterval(this.awayStatus, 40000);
+      });
+   }
+
+   componentWillUnmount() {
+      clearInterval(this.awayInterval);
+   }
+
+   awayStatus = () => {
+      let randomBot = this.state.users[
+         Math.floor(Math.random() * this.state.users.length)
+      ];
+      if (randomBot.status === "Away") {
+         this.updateBotStatus(randomBot.name, "Online");
+      } else {
+         this.updateBotStatus(randomBot.name, "Away");
+      }
+   };
 
    handleBotMessage = msg => {
       botMap.forEach((value, key, botMap) => {
          if (msg.search(key) !== -1) {
             let thisBot = botMap.get(key);
-            if (thisBot.status === "Away") {
+            if (thisBot.status !== `Playing ${thisBot.favoriteGame}`) {
                setTimeout(() => this.updateBotStatus(thisBot.name, "Online"), 2000);
             }
             if (
@@ -80,7 +65,10 @@ class ChatContainer extends React.Component {
                );
                setTimeout(
                   () =>
-                     this.updateBotStatus(thisBot.name, `Playing ${thisBot.favoriteGame}`),
+                     this.updateBotStatus(
+                        thisBot.name,
+                        `Playing ${thisBot.favoriteGame}`
+                     ),
                   5000
                );
             } else if (

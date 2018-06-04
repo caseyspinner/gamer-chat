@@ -1,6 +1,6 @@
 import botObject from "../constants/bot.defaults";
 
-const botArray = [
+const regexArray = [
    [/lebron/i, botObject.lebron],
    [/han solo/i, botObject.hanSolo],
    [/yoda/i, botObject.yoda],
@@ -8,5 +8,5 @@ const botArray = [
    [/miranda/i, botObject.miranda],
    [/conor/i, botObject.conor]
 ];
-const botMap = new Map(botArray);
+const botMap = new Map(regexArray);
 export default botMap;
