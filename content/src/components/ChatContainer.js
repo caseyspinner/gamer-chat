@@ -28,9 +28,22 @@ class ChatContainer extends React.Component {
                   () =>
                      this.addMessage(
                         thisBot.name,
-                        `My favorite game is ${thisBot.favoriteGame}`
+                        `My favorite game is ${thisBot.favoriteGame}.`
                      ),
                   3000
+               );
+            } else if (msg.search(new RegExp(thisBot.favoriteGame, "i")) !== -1) {
+               setTimeout(
+                  () => this.addMessage(thisBot.name, thisBot.affirmativeResponse),
+                  4000
+               );
+            } else if (
+               msg.search(/play/i) !== -1 &&
+               msg.search(new RegExp(thisBot.favoriteGame, "i")) == -1
+            ) {
+               setTimeout(
+                  () => this.addMessage(thisBot.name, thisBot.negativeResponse),
+                  4000
                );
             }
          }
