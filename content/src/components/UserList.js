@@ -52,11 +52,7 @@ class UserList extends React.Component {
       const usersList = this.state.users.map(user => {
          return (
             <li key={user.name}>
-               <UserCard
-                  name={user.name}
-                  icon={user.icon}
-                  status={user.status}
-               />
+               <UserCard name={user.name} icon={user.icon} status={user.status} />
             </li>
          );
       });
