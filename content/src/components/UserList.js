@@ -2,23 +2,7 @@ import React from "react";
 import UserCard from "./UserCard";
 import botObject from "../constants/bot.defaults";
 
-class UserList extends React.Component {
-   constructor(props) {
-      super(props);
-
-      //   this.state = {};
-   }
-
-   //    componentDidMount() {
-   //        this.setState({users: botObject})
-   //    }
-
-   //    static getDerivedStateFromProps(nextProps, prevState) {
-   //        if (nextProps.updateBot !== prevState.updateBot) {
-   //            return {users: [...prevState.users, ]}
-   //        }
-   //    }
-
+export default class UserList extends React.Component {
    render() {
       const usersList = this.props.users.map(user => {
          return (
@@ -34,5 +18,3 @@ class UserList extends React.Component {
       );
    }
 }
-
-export default UserList;
