@@ -41,47 +41,31 @@ class ChatContainer extends React.Component {
 
    handleBotMessage = msg => {
       botMap.forEach((value, key, botMap) => {
-         if (msg.search(key) !== -1) {
-            let thisBot = botMap.get(key);
-            if (thisBot.status !== `Playing ${thisBot.favoriteGame}`) {
-               setTimeout(() => this.updateBotStatus(thisBot.name, "Online"), 2000);
-            }
-            if (
-               msg.search(/favorite game/i) !== -1 ||
-               msg.search(/favourite game/i) !== -1
-            ) {
-               setTimeout(
-                  () =>
-                     this.addMessage(
-                        thisBot.name,
-                        `My favorite game is ${thisBot.favoriteGame}.`
-                     ),
-                  3000
-               );
-            } else if (msg.search(new RegExp(thisBot.favoriteGame, "i")) !== -1) {
-               setTimeout(
-                  () => this.addMessage(thisBot.name, thisBot.affirmativeResponse),
-                  4000
-               );
-               setTimeout(
-                  () =>
-                     this.updateBotStatus(
-                        thisBot.name,
-                        `Playing ${thisBot.favoriteGame}`
-                     ),
-                  5000
-               );
-            } else if (
-               msg.search(/play/i) !== -1 &&
-               msg.search(new RegExp(thisBot.favoriteGame, "i")) == -1
-            ) {
-               setTimeout(
-                  () => this.addMessage(thisBot.name, thisBot.negativeResponse),
-                  4000
-               );
-            } else {
-               setTimeout(() => this.addMessage(thisBot.name, thisBot.greeting), 2000);
-            }
+         if (msg.search(key) == -1) {
+            return;
+         }
+         let thisBot = botMap.get(key);
+         const response = (message, messageTimeout) => {
+            setTimeout(() => this.addMessage(thisBot.name, message), messageTimeout);
+         };
+         const statusUpdate = (status, statusTimeout) => {
+            setTimeout(() => this.updateBotStatus(thisBot.name, status), statusTimeout);
+         };
+         if (thisBot.status !== `Playing ${thisBot.favoriteGame}`) {
+            statusUpdate("Online", 2000);
+         }
+         if (msg.search(/favou?rite game/i) !== -1) {
+            response(`My favorite game is ${thisBot.favoriteGame}.`, 3000);
+         } else if (msg.search(new RegExp(thisBot.favoriteGame, "i")) !== -1) {
+            response(thisBot.affirmativeResponse, 4000);
+            statusUpdate(`Playing ${thisBot.favoriteGame}`, 5000);
+         } else if (
+            msg.search(/play/i) !== -1 &&
+            msg.search(new RegExp(thisBot.favoriteGame, "i")) == -1
+         ) {
+            response(thisBot.negativeResponse, 4000);
+         } else {
+            response(thisBot.greeting, 2000);
          }
       });
    };
