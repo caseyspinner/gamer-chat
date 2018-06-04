@@ -48,6 +48,16 @@ class UserList extends React.Component {
       };
    }
 
+//    componentDidMount() {
+//        this.setState({users: botObject})
+//    }
+
+//    static getDerivedStateFromProps(nextProps, prevState) {
+//        if (nextProps.updateBot !== prevState.updateBot) {
+//            return {users: [...prevState.users, ]}
+//        }
+//    }
+
    render() {
       const usersList = this.state.users.map(user => {
          return (

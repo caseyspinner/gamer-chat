@@ -19,6 +19,9 @@ class ChatContainer extends React.Component {
       botMap.forEach((value, key, botMap) => {
          if (msg.search(key) !== -1) {
             let thisBot = botMap.get(key);
+            // if (thisBot.status === "Away") {
+            //    () => this.updateBotStatus(thisBot.name, "Online");
+            // }
             if (
                msg.search(/favorite game/i) !== -1 ||
                msg.search(/favourite game/i) !== -1
@@ -36,6 +39,7 @@ class ChatContainer extends React.Component {
                   () => this.addMessage(thisBot.name, thisBot.affirmativeResponse),
                   4000
                );
+               // () => this.updateBotStatus(thisBot.name, `Playing {thisBot.favoriteGame}`);
             } else if (
                msg.search(/play/i) !== -1 &&
                msg.search(new RegExp(thisBot.favoriteGame, "i")) == -1
@@ -62,6 +66,10 @@ class ChatContainer extends React.Component {
 
    addOwnMessage = text => this.addMessage("You", text);
 
+   updateBotStatus = (botName, newStatus) => {
+      this.setState({ updateBot: { name: botName, status: newStatus } });
+   };
+
    render() {
       return (
          <div className="container-fluid d-flex chat-container align-self-center">
@@ -74,7 +82,7 @@ class ChatContainer extends React.Component {
                </div>
             </div>
             <div className="col-md-4 col-xl-4 col-lg-4 col-sm-2 col-xs-2">
-               <UserList />
+               <UserList updateBot={this.state.updateBot} />
             </div>
          </div>
       );
