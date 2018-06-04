@@ -19,7 +19,6 @@ class ChatContainer extends React.Component {
       botMap.forEach((value, key, botMap) => {
          if (msg.search(key) !== -1) {
             let thisBot = botMap.get(key);
-            setTimeout(() => this.addMessage(thisBot.name, thisBot.greeting), 2000);
             if (
                msg.search(/favorite game/i) !== -1 ||
                msg.search(/favourite game/i) !== -1
@@ -45,6 +44,8 @@ class ChatContainer extends React.Component {
                   () => this.addMessage(thisBot.name, thisBot.negativeResponse),
                   4000
                );
+            } else {
+               setTimeout(() => this.addMessage(thisBot.name, thisBot.greeting), 2000);
             }
          }
       });
