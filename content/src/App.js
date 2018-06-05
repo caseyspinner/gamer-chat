@@ -9,7 +9,7 @@ class App extends Component {
    render() {
       return (
          <MuiThemeProvider>
-            <div className="App d-flex justify-content-center">
+            <div className="App justify-content-center">
                <CssBaseline />
                <ChatContainer />
             </div>
