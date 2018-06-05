@@ -2,7 +2,6 @@ import React from "react";
 import ChatFeed from "./ChatFeed";
 import UserList from "./UserList";
 import ChatMessageBox from "./ChatMessageBox";
-import botObject from "../constants/bot.defaults";
 import botMap from "../constants/bot.nameMap";
 import botArray from "../constants/bot.array";
 const moment = require("moment");
@@ -49,7 +48,7 @@ class ChatContainer extends React.Component {
 
    handleBotMessage = msg => {
       botMap.forEach((value, key, botMap) => {
-         if (msg.search(key) == -1) {
+         if (msg.search(key) === -1) {
             return;
          }
          const thisBot = botMap.get(key);
@@ -59,7 +58,7 @@ class ChatContainer extends React.Component {
             msg.search(new RegExp(thisBot.favoriteGame, "i")) !== -1;
          const askedToPlayOtherGame =
             msg.search(/play/i) !== -1 &&
-            msg.search(new RegExp(thisBot.favoriteGame, "i")) == -1;
+            msg.search(new RegExp(thisBot.favoriteGame, "i")) === -1;
 
          if (notPlaying) {
             this.timedStatusUpdate(thisBot.name, "Online", 2000);

@@ -31,12 +31,13 @@ class ChatFeed extends React.Component {
       if (message !== currentMessages[currentMessages.length - 1]) {
          return { messages: [...prevState.messages, message] };
       }
+      return null;
    };
 
    render() {
-      const messages = this.state.messages.map(message => {
+      const messages = this.state.messages.map((message, index) => {
          return (
-            <li key={message.timeStamp} className="message-item">
+            <li key={index} className="message-item">
                <strong>{message.user && `${message.user}:`}</strong> {message.text}{" "}
                <span className="timestamp pull-right">{message.timeStamp}</span>
             </li>

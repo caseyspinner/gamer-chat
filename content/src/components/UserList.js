@@ -1,6 +1,5 @@
 import React from "react";
 import UserCard from "./UserCard";
-import botObject from "../constants/bot.defaults";
 
 export default class UserList extends React.Component {
    render() {
