@@ -16,7 +16,7 @@ export default class ChatMessageBox extends React.Component {
                name="msgName"
                ref={node => (this.myMessage = node)}
             />
-            <input className="submit-button" type="submit" value="Submit" />
+            <input className="submit-button btn btn-secondary btn-sm" type="submit" value="Submit" />
          </form>
       );
    }

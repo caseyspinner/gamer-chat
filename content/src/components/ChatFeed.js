@@ -26,7 +26,7 @@ class ChatFeed extends React.Component {
    render() {
       const messages = this.state.messages.map(message => {
          return (
-            <li className="message-item">
+            <li key={message.timeStamp} className="message-item">
                <strong>{message.user && `${message.user}:`}</strong> {message.text}{" "}
                <span className="timestamp pull-right">{message.timeStamp}</span>
             </li>

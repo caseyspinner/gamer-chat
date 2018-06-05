@@ -8,7 +8,6 @@
 .user-card {
    height: 16%;
    width: 100%;
-   margin-left: 1em;
    margin-top: 1em;
    margin-bottom: 1em;
    vertical-align: middle;
@@ -22,6 +21,7 @@
    padding-top: 0.3em;
    padding-bottom: 0.3em;
    text-align: left;
+   margin-bottom: 0.25em;
 }
 
 .user-card img {
@@ -46,6 +46,9 @@
    .user-list {
       overflow-x: scroll;
    }
+   .submit-button {
+      display: none;
+   }
 }
 
 @media only screen and (min-width: 769px) {
@@ -56,6 +59,9 @@
    }
    .user-list {
       overflow-x: hidden;
+   }
+   .user-card {
+      margin-left: 1em;
    }
 }
 
@@ -94,15 +100,6 @@ li {
    margin: 0;
    padding: 0;
 }
-
-/* .message-list {
-  display:flex;
-  flex-direction: column;
-}
-
-.message-item {
-  flex: 0 0 auto;
-} */
 
 .chat-container {
    background-color: rgb(84, 92, 100);
