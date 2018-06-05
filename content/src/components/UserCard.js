@@ -12,16 +12,16 @@ export default class UserCard extends React.Component {
       };
       return (
          <div className="user-card">
-            <div className="row">
-               <div className="col-md-3">
-                  <img src={this.props.icon} />
-               </div>
-               <div className="col-md-5">
-                  <div className="row right-side">
-                     {this.props.name}
+            <div className="col-md-12">
+               <div style={{ marginBottom: "1em" }} className="row">
+                  <div style={{ paddingLeft: 0 }} className="col-md-4">
+                     <img src={this.props.icon} />
                   </div>
-                  <div style={styles} className="row right-side">
-                     {this.props.status}
+                  <div className="col-md-5">
+                     <div className="row right-side">{this.props.name}</div>
+                     <div style={styles} className="row right-side">
+                        {this.props.status}
+                     </div>
                   </div>
                </div>
             </div>
