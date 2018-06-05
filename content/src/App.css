@@ -1,65 +1,88 @@
 .App {
-  text-align: center;
-  height: 100vh;
-  width: 100vw;
-  background-color: rgb(58, 58, 58);
+   text-align: center;
+   height: 100vh;
+   width: 100vw;
+   background-color: rgb(58, 58, 58);
 }
 
 .user-card {
-  height: 16%;
-  width: 100%;
-  margin: 1em;
-  vertical-align: middle;
-  text-align: center;
+   height: 16%;
+   width: 100%;
+   margin-left: 1em;
+   margin-top:1em;
+   margin-bottom:1em;
+   vertical-align: middle;
+   text-align: center;
 }
 
 .right-side {
-  vertical-align: middle;
-  height: 50%;
+   vertical-align: middle;
+   height: 40%;
+   display: flex;
+   padding-bottom: 0.3em;
+   text-align:left;
 }
 
 .user-card img {
-  height: 100%;
-  width: 100%;
+   height: 100%;
+   width: 100%;
 }
 
-@media only screen and (max-width:768px) {
-  .chat-container {
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-  }
+@media only screen and (max-width: 768px) {
+   .chat-container {
+      width: 100vw;
+      height: 100vh;
+      margin: 0;
+      padding-top: 1.2em;
+   }
+   .chat-feed {
+      margin-left: 0;
+      margin-right: 0;
+   }
 }
 
-@media only screen and (min-width:769px) {
-  .chat-container {
-    width: 90vw;
-    height: 90vh;
-  }
+@media only screen and (min-width: 769px) {
+   .chat-container {
+      padding: 1.2em;
+      width: 80vw;
+      height: 90vh;
+   }
 }
 
 .user-list {
-  height: 85vh;
-  background-color: rgb(58, 58, 58);
-  box-shadow: 0 0 8px 0 rgba(0,0,0, 0.3);
-  padding:0.5em;
-  color: rgb(192, 192, 192);
+   height: 85vh;
+   background-color: rgb(58, 58, 58);
+   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.3);
+   padding: 0.5em;
+   color: rgb(192, 192, 192);
+   overflow-y: scroll;
+}
+
+.input-box {
+   height: 100%;
+   margin-top: 2em;
+   width: 90%;
+}
+
+.submit-button {
+  margin-left: 1em;
 }
 
 .chat-feed {
-  background-color: rgb(192, 192, 192);
-  box-shadow: 0 0 8px 0 rgba(0,0,0, 0.3);
-  height: 60vh;
-  overflow-y:scroll;
-  padding: 1em;
-  text-align: left;
+   background-color: rgb(192, 192, 192);
+   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.3);
+   height: 60vh;
+   overflow-y: scroll;
+   padding: 1em;
+   text-align: left;
 }
 
-ul, li {
-  list-style-type: none;
-  list-style-position: inside;
-  margin: 0;
-  padding:0;
+ul,
+li {
+   list-style-type: none;
+   list-style-position: inside;
+   margin: 0;
+   padding: 0;
 }
 
 /* .message-list {
@@ -72,34 +95,36 @@ ul, li {
 } */
 
 .chat-container {
-  padding: 1.2em;
-  background-color: rgb(84, 92, 100);
-  vertical-align: middle;
-  box-shadow: 0 0 8px 0 rgba(0,0,0, 0.3);
-
+   background-color: rgb(84, 92, 100);
+   vertical-align: middle;
+   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.3);
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+   animation: App-logo-spin infinite 20s linear;
+   height: 80px;
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+   background-color: #222;
+   height: 150px;
+   padding: 20px;
+   color: white;
 }
 
 .App-title {
-  font-size: 1.5em;
+   font-size: 1.5em;
 }
 
 .App-intro {
-  font-size: large;
+   font-size: large;
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+   from {
+      transform: rotate(0deg);
+   }
+   to {
+      transform: rotate(360deg);
+   }
 }

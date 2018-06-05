@@ -22,7 +22,7 @@ const botArray = [
       icon: reckerPhoto
    },
    {
-      name: "Lebron",
+      name: "LeBron",
       status: "Away",
       icon: lebronPhoto
    },

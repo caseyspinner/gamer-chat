@@ -115,7 +115,7 @@ class ChatContainer extends React.Component {
                   <ChatMessageBox addMessage={this.addOwnMessage} />
                </div>
             </div>
-            <div className="col-md-4 col-xl-4 col-lg-4 col-sm-2 col-xs-2">
+            <div className="col-md-4 col-xl-4 col-lg-4 col-sm-3 col-xs-3">
                <UserList users={this.state.users} />
             </div>
          </div>

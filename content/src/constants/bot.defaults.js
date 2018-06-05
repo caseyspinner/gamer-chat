@@ -34,7 +34,7 @@ const botObject = {
       negativeResponse: "That's a negative."
    },
    lebron: {
-      name: "Lebron",
+      name: "LeBron",
       status: "Away",
       favoriteGame: "NBA Live 18",
       icon: lebronPhoto,

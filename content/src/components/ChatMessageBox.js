@@ -11,11 +11,12 @@ export default class ChatMessageBox extends React.Component {
       return (
          <form className="input" onSubmit={e => this.submitMessage(e)}>
             <input
+               className="input-box"
                type="text"
                name="msgName"
                ref={node => (this.myMessage = node)}
             />
-            <input type="submit" value="Submit" />
+            <input className="submit-button" type="submit" value="Submit" />
          </form>
       );
    }
