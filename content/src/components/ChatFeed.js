@@ -9,11 +9,21 @@ class ChatFeed extends React.Component {
       };
    }
 
+   componentDidMount() {
+      this.scrollToBottom();
+   }
+
    onAddMessage = message => {
       this.setState(prevState => ({
          messages: [...prevState.messages, message]
       }));
    };
+
+   componentDidUpdate() {
+      this.scrollToBottom();
+   }
+
+   scrollToBottom = () => (this.feed.scrollTop = this.feed.scrollHeight);
 
    static getDerivedStateFromProps = (nextProps, prevState) => {
       let message = nextProps.messageData;
@@ -34,7 +44,12 @@ class ChatFeed extends React.Component {
       });
 
       return (
-         <div className="chat-feed">
+         <div
+            ref={feed => {
+               this.feed = feed;
+            }}
+            className="chat-feed"
+         >
             <ul className="message-list">{messages.length > 0 ? messages : null}</ul>
          </div>
       );
