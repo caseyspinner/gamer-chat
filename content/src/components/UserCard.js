@@ -17,7 +17,7 @@ export default class UserCard extends React.Component {
                   <div style={{ paddingLeft: 0 }} className="col-md-4">
                      <img src={this.props.icon} />
                   </div>
-                  <div className="col-md-5">
+                  <div className="col-md-7">
                      <div className="row right-side">{this.props.name}</div>
                      <div style={styles} className="row right-side">
                         {this.props.status}

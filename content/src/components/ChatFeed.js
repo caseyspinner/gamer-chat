@@ -28,7 +28,7 @@ class ChatFeed extends React.Component {
          return (
             <li className="message-item">
                <strong>{message.user && `${message.user}:`}</strong> {message.text}{" "}
-               <span className="pull-right">{message.timeStamp}</span>
+               <span className="timestamp pull-right">{message.timeStamp}</span>
             </li>
          );
       });

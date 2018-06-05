@@ -9,8 +9,8 @@
    height: 16%;
    width: 100%;
    margin-left: 1em;
-   margin-top:1em;
-   margin-bottom:1em;
+   margin-top: 1em;
+   margin-bottom: 1em;
    vertical-align: middle;
    text-align: center;
 }
@@ -21,7 +21,7 @@
    display: flex;
    padding-top: 0.3em;
    padding-bottom: 0.3em;
-   text-align:left;
+   text-align: left;
 }
 
 .user-card img {
@@ -40,6 +40,12 @@
       margin-left: 0;
       margin-right: 0;
    }
+   .timestamp {
+      display: none;
+   }
+   .user-list {
+      overflow-x: scroll;
+   }
 }
 
 @media only screen and (min-width: 769px) {
@@ -47,6 +53,9 @@
       padding: 1.2em;
       width: 80vw;
       height: 90vh;
+   }
+   .user-list {
+      overflow-x: hidden;
    }
 }
 
@@ -57,17 +66,16 @@
    padding: 0.5em;
    color: rgb(192, 192, 192);
    overflow-y: scroll;
-   overflow-x: hidden;
 }
 
 .input-box {
    height: 100%;
-   margin-top: 2em;
+   margin-top: 3em;
    width: 90%;
 }
 
 .submit-button {
-  margin-left: 1em;
+   margin-left: 1em;
 }
 
 .chat-feed {
