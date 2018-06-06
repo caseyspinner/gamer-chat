@@ -19,7 +19,7 @@ class ChatContainer extends React.Component {
 
    componentDidMount() {
       this.setState({ users: botArray }, () => {
-         this.awayInterval = setInterval(this.awayStatus, 40000);
+         this.awayInterval = setInterval(this.awayStatus, 30000);
       });
    }
 
@@ -33,6 +33,7 @@ class ChatContainer extends React.Component {
       ];
       if (randomBot.status === "Away") {
          this.updateBotStatus(randomBot.name, "Online");
+         this.addMessage(randomBot.name, randomBot.randomStatement);
       } else {
          this.updateBotStatus(randomBot.name, "Away");
       }
@@ -105,21 +106,19 @@ class ChatContainer extends React.Component {
 
    render() {
       return (
-         <React.Fragment>
-            <div className="container-fluid chat-container align-self-center">
-               <div className="chatbox-side col-md-9 col-xl-9 col-lg-9 col-sm-10 col-xs-10">
-                  <div className="row-responsive">
-                     <ChatFeed messageData={this.state.message || null} />
-                  </div>
-                  <div className="row-responsive">
-                     <ChatMessageBox addMessage={this.addOwnMessage} />
-                  </div>
+         <div className="container-fluid chat-container align-self-center">
+            <div className="chatbox-side col-md-9 col-xl-9 col-lg-9 col-sm-10 col-xs-10">
+               <div className="row-responsive">
+                  <ChatFeed messageData={this.state.message || null} />
                </div>
-               <div className="user-list-column col-md-2 col-xl-3 col-lg-2 col-sm-3 col-xs-3">
-                  <UserList users={this.state.users} />
+               <div className="row-responsive">
+                  <ChatMessageBox addMessage={this.addOwnMessage} />
                </div>
             </div>
-         </React.Fragment>
+            <div className="user-list-column col-md-2 col-xl-3 col-lg-2 col-sm-3 col-xs-3">
+               <UserList users={this.state.users} />
+            </div>
+         </div>
       );
    }
 }

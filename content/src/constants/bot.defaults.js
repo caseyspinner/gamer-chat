@@ -12,8 +12,9 @@ const botObject = {
       favoriteGame: "Star Wars Battlefront II",
       icon: hanSoloPhoto,
       greeting: "Yooooo!",
-      affirmativeResponse: "Down! I'll hop online now. Yoda, you want to play Star Wars Battlefront II with us?",
-      negativeResponse: "Nah, I'll pass."
+      affirmativeResponse:
+         "Down! I'll hop online now. Yoda, you want to play Star Wars Battlefront II with us?",
+      negativeResponse: "Nah, I'll pass.",
    },
    yoda: {
       name: "Yoda",
@@ -22,7 +23,7 @@ const botObject = {
       icon: yodaPhoto,
       greeting: "Greetings.",
       affirmativeResponse: "Play with you, I will.",
-      negativeResponse: "Interested, I am not."
+      negativeResponse: "Interested, I am not.",
    },
    recker: {
       name: "Recker",
@@ -31,16 +32,16 @@ const botObject = {
       icon: reckerPhoto,
       greeting: "Hey.",
       affirmativeResponse: "Let's do it. Join my squad.",
-      negativeResponse: "That's a negative."
+      negativeResponse: "That's a negative.",
    },
    lebron: {
       name: "LeBron",
       status: "Away",
       favoriteGame: "NBA Live 18",
       icon: lebronPhoto,
-      greeting: "Hey man.",
+      greeting: "Hey!",
       affirmativeResponse: "Sounds good, see you out there!",
-      negativeResponse: "Sorry, man, not my kind of game."
+      negativeResponse: "Sorry, man, not my kind of game.",
    },
    miranda: {
       name: "Miranda",
@@ -49,7 +50,7 @@ const botObject = {
       icon: mirandaPhoto,
       greeting: "Hello.",
       affirmativeResponse: "I could go for some Mass Effect.",
-      negativeResponse: "Thanks, but no thanks."
+      negativeResponse: "Thanks, but no thanks.",
    },
    conor: {
       name: "Conor",
@@ -58,7 +59,7 @@ const botObject = {
       icon: conorPhoto,
       greeting: "Ayyyy",
       affirmativeResponse: "It's your funeral, lad. See you in the octagon.",
-      negativeResponse: "Sorry, busy training."
+      negativeResponse: "Sorry, busy training.",
    }
 };
 

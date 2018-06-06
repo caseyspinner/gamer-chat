@@ -1,4 +1,3 @@
-
 .App {
    text-align: center;
    height: 100vh;
@@ -19,6 +18,10 @@
    text-align: center;
 }
 
+.name {
+   font-weight: 600;
+}
+
 .user-card:hover {
    size: 110%;
 }
@@ -30,12 +33,18 @@
    padding-bottom: 0.3em;
    text-align: left;
    margin-bottom: 0.25em;
+   text-shadow: 1px 1px black;
+   font-size: 110%;
 }
 
 .user-card img {
    height: 100%;
    width: 100%;
    border-radius: 1.5em;
+}
+
+.user-card img:hover {
+   transform: scale(1.2);
 }
 
 @media screen and (max-height: 426px) {
@@ -172,4 +181,54 @@ li {
    vertical-align: middle;
    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.3);
    display: flex;
+   -webkit-animation: fadein 2s;
+   -moz-animation: fadein 2s;
+   -ms-animation: fadein 2s;
+   -o-animation: fadein 2s;
+   animation: fadein 2s;
+}
+
+@keyframes fadein {
+   from {
+      opacity: 0;
+   }
+   to {
+      opacity: 1;
+   }
+}
+
+@-moz-keyframes fadein {
+   from {
+      opacity: 0;
+   }
+   to {
+      opacity: 1;
+   }
+}
+
+@-webkit-keyframes fadein {
+   from {
+      opacity: 0;
+   }
+   to {
+      opacity: 1;
+   }
+}
+
+@-ms-keyframes fadein {
+   from {
+      opacity: 0;
+   }
+   to {
+      opacity: 1;
+   }
+}
+
+@-o-keyframes fadein {
+   from {
+      opacity: 0;
+   }
+   to {
+      opacity: 1;
+   }
 }

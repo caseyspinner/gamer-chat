@@ -9,32 +9,38 @@ const botArray = [
    {
       name: "Han Solo",
       status: "Online",
-      icon: hanSoloPhoto
+      icon: hanSoloPhoto,
+      randomStatement: "I could sure hit the cantina about now...",
    },
    {
       name: "Yoda",
       status: "Away",
-      icon: yodaPhoto
+      icon: yodaPhoto,
+      randomStatement: "Returned, I have."
    },
    {
       name: "Recker",
       status: "Online",
-      icon: reckerPhoto
+      icon: reckerPhoto,
+      randomStatement: "You here, Conor? I'm ready for some action."
    },
    {
       name: "LeBron",
       status: "Away",
-      icon: lebronPhoto
+      icon: lebronPhoto,
+      randomStatement: "I'm here. Also, ball is life."
    },
    {
       name: "Miranda",
       status: "Online",
-      icon: mirandaPhoto
+      icon: mirandaPhoto,
+      randomStatement: "I'm back! Hey LeBron."
    },
    {
       name: "Conor",
       status: "Away",
-      icon: conorPhoto
+      icon: conorPhoto,
+      randomStatement: "Who's up for a fight?"
    }
 ];
 module.exports = botArray;
