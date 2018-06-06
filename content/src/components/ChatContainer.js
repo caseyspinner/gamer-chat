@@ -49,9 +49,8 @@ class ChatContainer extends React.Component {
 
    handleBotMessage = msg => {
       botMap.forEach((value, key, botMap) => {
-         if (msg.search(key) === -1) {
-            return;
-         }
+
+         const notThisBot = msg.search(key) === -1;
          const thisBot = botMap.get(key);
          const notPlaying = thisBot.status !== `Playing ${thisBot.favoriteGame}`;
          const favoriteGameAsked = msg.search(/favou?rite game/i) !== -1;
@@ -60,6 +59,10 @@ class ChatContainer extends React.Component {
          const askedToPlayOtherGame =
             msg.search(/play/i) !== -1 &&
             msg.search(new RegExp(thisBot.favoriteGame, "i")) === -1;
+
+         if (notThisBot) {
+            return;
+         }
 
          if (notPlaying) {
             this.timedStatusUpdate(thisBot.name, "Online", 2000);
