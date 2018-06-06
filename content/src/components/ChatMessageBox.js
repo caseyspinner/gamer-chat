@@ -1,5 +1,6 @@
 import React from "react";
 
+
 export default class ChatMessageBox extends React.Component {
    submitMessage = e => {
       e.preventDefault();

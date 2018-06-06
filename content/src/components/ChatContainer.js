@@ -105,19 +105,21 @@ class ChatContainer extends React.Component {
 
    render() {
       return (
-         <div className="container-fluid chat-container align-self-center">
-            <div className="chatbox-side col-md-9 col-xl-9 col-lg-9 col-sm-10 col-xs-10">
-               <div className="row-responsive">
-                  <ChatFeed messageData={this.state.message || null} />
+         <React.Fragment>
+            <div className="container-fluid chat-container align-self-center">
+               <div className="chatbox-side col-md-9 col-xl-9 col-lg-9 col-sm-10 col-xs-10">
+                  <div className="row-responsive">
+                     <ChatFeed messageData={this.state.message || null} />
+                  </div>
+                  <div className="row-responsive">
+                     <ChatMessageBox addMessage={this.addOwnMessage} />
+                  </div>
                </div>
-               <div className="row-responsive">
-                  <ChatMessageBox addMessage={this.addOwnMessage} />
+               <div className="user-list-column col-md-2 col-xl-3 col-lg-2 col-sm-3 col-xs-3">
+                  <UserList users={this.state.users} />
                </div>
             </div>
-            <div className="user-list-column col-md-2 col-xl-3 col-lg-2 col-sm-3 col-xs-3">
-               <UserList users={this.state.users} />
-            </div>
-         </div>
+         </React.Fragment>
       );
    }
 }
