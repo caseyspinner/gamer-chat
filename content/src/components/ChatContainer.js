@@ -49,7 +49,6 @@ class ChatContainer extends React.Component {
 
    handleBotMessage = msg => {
       botMap.forEach((value, key, botMap) => {
-
          const notThisBot = msg.search(key) === -1;
          const thisBot = botMap.get(key);
          const notPlaying = thisBot.status !== `Playing ${thisBot.favoriteGame}`;
@@ -89,7 +88,7 @@ class ChatContainer extends React.Component {
          {
             message: { text, user, timeStamp: moment().format("h:mm:ss a") }
          },
-         this.handleBotMessage.bind(null, text)
+         () => this.handleBotMessage(text)
       );
    };
 
